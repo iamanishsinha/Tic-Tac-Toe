@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tic Tac Toe | Classic Game Series</title>
+
+  <!-- Main Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===============================
+       DECORATIVE BUBBLE BACKGROUND
+       (visual only, no interaction)
+  ================================ -->
+  <div class="bubble-bg" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <!-- ===============================
+       START / HOME SCREEN
+  ================================ -->
+  <section id="startScreen" class="screen active">
+    <div class="card intro">
+
+      <h1 class="title">TIC TAC TOE</h1>
+      <h2 class="subtitle">Glassic Game Series</h2>
+
+      <!-- Quote -->
+      <div class="quote">
+        <p id="quoteText">
+          "Strategy requires thought, tactics require observation."
+        </p>
+        <span id="quoteAuthor">— Max Euwe</span>
+      </div>
+
+      <!-- Board Size Selection -->
+      <div class="board-select">
+        <p class="label">Select Board Size</p>
+
+        <div class="sizes">
+          <button type="button" onclick="startGame(3)">3 × 3</button>
+          <button type="button" onclick="startGame(4)">4 × 4</button>
+          <button type="button" onclick="startGame(5)">5 × 5</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===============================
+       GAME SCREEN
+  ================================ -->
+  <section id="gameScreen" class="screen">
+
+    <div class="card game">
+
+      <!-- Game Title -->
+      <h2 class="board-title">Tic Tac Toe</h2>
+
+      <!-- Turn Indicator Banner -->
+      <div id="turnBanner" class="turn-banner">
+        Player X's Turn
+      </div>
+
+      <!-- Player Status Cards -->
+      <div class="players">
+
+        <div id="playerX" class="player-card active">
+          <div class="symbol">X</div>
+          <div class="status">Playing</div>
+        </div>
+
+        <div id="playerO" class="player-card">
+          <div class="symbol">O</div>
+          <div class="status">Waiting</div>
+        </div>
+
+      </div>
+
+      <!-- Board Frame -->
+      <div class="board-frame">
+        <div id="board" class="board">
+          <!-- Cells generated dynamically via JS -->
+        </div>
+      </div>
+
+      <!-- Game Control Buttons -->
+      <div class="controls">
+        <button
+          id="withdrawBtn"
+          class="hidden"
+          type="button"
+          onclick="withdrawGame()"
+        >
+          Withdraw
+        </button>
+
+        <button
+          id="restartBtn"
+          class="hidden"
+          type="button"
+          onclick="restartGame()"
+        >
+          Restart
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===============================
+       BOTTOM BAR (CREDIT + ACTIONS)
+  ================================ -->
+  <footer class="bottom-bar">
+
+    <!-- Credit -->
+    <div class="credit">
+      Designed by Anish Sinha<br />
+      Glassic Game Series
+    </div>
+
+    <!-- Actions -->
+    <div class="bottom-actions">
+      <button
+        type="button"
+        class="icon-btn"
+        title="Game Rules"
+        onclick="openRules()"
+      >
+        📘
+      </button>
+
+      <button
+        type="button"
+        class="icon-btn"
+        title="Settings"
+        onclick="openSettings()"
+      >
+        ⚙️
+      </button>
+    </div>
+
+  </footer>
+
+  <!-- ===============================
+       RULES MODAL
+  ================================ -->
+  <div id="rulesModal" class="modal hidden" role="dialog" aria-modal="true">
+
+    <div class="modal-card">
+
+      <button
+        type="button"
+        class="close"
+        aria-label="Close Rules"
+        onclick="closeRules()"
+      >
+        ✖
+      </button>
+
+      <h2>Game Rules</h2>
+
+      <ul class="rules-list">
+        <li><strong>Objective:</strong> Align your symbols in a straight line.</li>
+        <li><strong>3 × 3:</strong> Match 3 symbols to win.</li>
+        <li><strong>4 × 4:</strong> Match 4 symbols to win.</li>
+        <li><strong>5 × 5:</strong> Match 5 symbols to win.</li>
+        <li>Players take turns one at a time.</li>
+        <li>Only one move is allowed per turn.</li>
+        <li>Winning lines can be horizontal, vertical, or diagonal.</li>
+        <li>If the board fills with no winner, the game is a draw.</li>
+        <li>Withdraw immediately ends the current game.</li>
+      </ul>
+
+    </div>
+  </div>
+
+  <!-- ===============================
+       SETTINGS MODAL
+  ================================ -->
+  <div id="settingsModal" class="modal hidden" role="dialog" aria-modal="true">
+
+    <div class="modal-card">
+
+      <button
+        type="button"
+        class="close"
+        aria-label="Close Settings"
+        onclick="closeSettings()"
+      >
+        ✖
+      </button>
+
+      <h2>Settings</h2>
+
+      <div class="setting-item">
+        <label>
+          <input
+            type="checkbox"
+            checked
+            onchange="toggleTapSound(this)"
+          />
+          Tap Sound
+        </label>
+      </div>
+
+      <div class="setting-item">
+        <label>
+          <input
+            type="checkbox"
+            checked
+            onchange="toggleWinSound(this)"
+          />
+          Win Sound
+        </label>
+      </div>
+
+      <div class="setting-item">
+        <label>
+          <input
+            type="checkbox"
+            checked
+            onchange="toggleMusic(this)"
+          />
+          Game Music
+        </label>
+      </div>
+
+      <div class="setting-item">
+        <label>
+          Music Volume
+          <input
+            type="range"
+            min="0"
+            max="1"
+            step="0.1"
+            value="0.4"
+            onchange="setMusicVolume(this)"
+          />
+        </label>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===============================
+       WIN SUMMARY MODAL
+  ================================ -->
+  <div id="summaryModal" class="modal hidden" role="dialog" aria-modal="true">
+
+    <div class="modal-card summary">
+
+      <h2 id="summaryTitle">Player X Wins!</h2>
+
+      <p id="summaryDetails">
+        Board: 3 × 3 | Moves: 7
+      </p>
+
+      <div class="summary-actions">
+        <button type="button" onclick="restartGame()">
+          Play Again
+        </button>
+
+        <button type="button" onclick="location.reload()">
+          Change Board
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===============================
+       MAIN SCRIPT
+  ================================ -->
+  <script src="script.js"></script>
+
+</body>
+</html>

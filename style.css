@@ -1,0 +1,366 @@
+/* ===============================
+   RESET & BASE
+================================ */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: Georgia, "Times New Roman", serif;
+  background: #e9e4d3;
+  color: #2b2b2b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* ===============================
+   BUBBLE BACKGROUND (SAFE)
+================================ */
+.bubble-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none; /* 🔒 CRITICAL */
+  overflow: hidden;
+}
+
+.bubble-bg span {
+  position: absolute;
+  bottom: -140px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(170, 170, 140, 0.35);
+  animation: bubbleUp linear infinite;
+}
+
+.bubble-bg span:nth-child(odd) {
+  background: rgba(190, 180, 140, 0.35);
+}
+
+.bubble-bg span:nth-child(1) { left: 5%;  animation-duration: 14s; }
+.bubble-bg span:nth-child(2) { left: 15%; animation-duration: 18s; }
+.bubble-bg span:nth-child(3) { left: 25%; animation-duration: 16s; }
+.bubble-bg span:nth-child(4) { left: 35%; animation-duration: 20s; }
+.bubble-bg span:nth-child(5) { left: 45%; animation-duration: 15s; }
+.bubble-bg span:nth-child(6) { left: 55%; animation-duration: 19s; }
+.bubble-bg span:nth-child(7) { left: 65%; animation-duration: 17s; }
+.bubble-bg span:nth-child(8) { left: 75%; animation-duration: 21s; }
+.bubble-bg span:nth-child(9) { left: 85%; animation-duration: 16s; }
+.bubble-bg span:nth-child(10){ left: 95%; animation-duration: 22s; }
+
+@keyframes bubbleUp {
+  to {
+    transform: translateY(-120vh) scale(1.15);
+    opacity: 0;
+  }
+}
+
+/* ===============================
+   SCREEN CONTROL
+================================ */
+.screen {
+  display: none;
+  position: relative;
+  z-index: 5;
+}
+
+.screen.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===============================
+   CARD (COMMON)
+================================ */
+.card {
+  background: #f9f6ee;
+  padding: 26px;
+  border-radius: 18px;
+  box-shadow: 0 14px 32px rgba(0,0,0,0.25);
+  width: min(92vw, 420px);
+  text-align: center;
+  border-radius: 22px; /* was 18px */
+}
+
+/* ===============================
+   START SCREEN
+================================ */
+.title {
+  letter-spacing: 4px;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  font-weight: normal;
+  margin-bottom: 22px;
+}
+
+.quote {
+  font-style: italic;
+  margin: 18px 0 26px;
+}
+
+.quote span {
+  display: block;
+  text-align: right;
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+.label {
+  margin-bottom: 12px;
+  font-weight: bold;
+}
+
+.sizes {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.sizes button {
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: 1.5px solid #3a3a2f;
+  background: #fff;
+  cursor: pointer;
+}
+
+/* ===============================
+   GAME SCREEN
+================================ */
+.board-title {
+  margin-bottom: 6px;
+}
+
+.turn-banner {
+  border: 1.5px solid #3a3a2f;
+  padding: 6px;
+  margin-bottom: 12px;
+  background: #fff;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+/* Player cards */
+.players {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 12px;
+}
+
+.player-card {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  border: 2px solid #3a3a2f;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.4;
+}
+
+.player-card.active {
+  opacity: 1;
+  background: #fff;
+}
+
+.player-card .symbol {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.player-card .status {
+  font-size: 12px;
+}
+
+/* ===============================
+   BOARD + FRAME
+================================ */
+.board-frame {
+  padding: 14px;
+  border: 3px solid #3a3a2f;
+  background: #d8d2bd;
+  margin: 14px auto;
+}
+.board-frame {
+  border-radius: 16px;
+}
+
+.board {
+  display: grid;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* Cells */
+.cell {
+  width: 60px;
+  height: 60px;
+  background: #fff;
+  border: 2px solid #3a3a2f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  cursor: pointer;
+  pointer-events: auto; /* 🔒 ENSURE CLICK */
+  border-radius: 10px;
+}
+
+.cell.preview {
+  opacity: 0.35;
+}
+
+/* ===============================
+   CONTROLS
+================================ */
+.controls {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.controls button {
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: 1.5px solid #3a3a2f;
+  background: #fff;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ===============================
+   BOTTOM BAR
+================================ */
+.bottom-bar {
+  position: fixed;
+  bottom: 16px;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 5;
+}
+.button {
+  border-radius: 10px;
+}
+
+.credit {
+  font-size: 12px;
+}
+
+.bottom-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.icon-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1.5px solid #3a3a2f;
+  background: #fff;
+  cursor: pointer;
+}
+
+/* ===============================
+   MODALS
+================================ */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-card {
+  background: #f9f6ee;
+  padding: 22px;
+  border-radius: 14px;
+  width: min(90vw, 380px);
+  position: relative;
+}
+
+.modal-card h2 {
+  margin-top: 0;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  cursor: pointer;
+  color: red;
+}
+
+/* Rules */
+.rules-list {
+  padding-left: 18px;
+}
+
+.rules-list li {
+  margin-bottom: 8px;
+}
+
+/* Settings */
+.setting-item {
+  margin-bottom: 12px;
+}
+
+/* Summary */
+.summary {
+  border: 3px solid #3a3a2f;
+}
+
+.summary-actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.summary-actions button {
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: 1.5px solid #3a3a2f;
+  background: #fff;
+  cursor: pointer;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 480px) {
+  .cell {
+    width: 52px;
+    height: 52px;
+  }
+
+  .player-card {
+    width: 64px;
+    height: 64px;
+  }
+}
