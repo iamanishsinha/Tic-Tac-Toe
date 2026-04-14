@@ -258,11 +258,11 @@ body {
   z-index: 5;
 }
 .button {
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
 .credit {
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .bottom-actions {
