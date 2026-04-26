@@ -8,7 +8,7 @@ const quotes = [
   ["In every game, the best move is not obvious.", "Magnus Carlsen"],
   ["A game is a puzzle that plays back.", "Sid Meier"],
   ["Every move counts.", "Classic Proverb"],
-  ["Simple rules create complex strategy.", "Game Design Quote"],
+  ["Simple rules create complex strategy.", "Unknown"],
   ["You learn more from losing than winning.", "Unknown"]
 ];
 
