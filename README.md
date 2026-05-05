@@ -2,7 +2,7 @@
 
 An advanced and beautifully designed **Tic Tac Toe web game** built using **HTML, CSS, and JavaScript**, featuring dynamic board sizes, sound effects, modals, and a polished UI experience.
 
----
+----
 
 ## ✨ Features
 
@@ -21,7 +21,7 @@ An advanced and beautifully designed **Tic Tac Toe web game** built using **HTML
 * 🔊 Sound effects & background music support
 * 🚪 Withdraw and restart options
 
----
+----
 
 ## 📁 Project Structure
 
@@ -42,7 +42,7 @@ tic-tac-toe/
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/tic-tac-toe.git
+   git clone https://github.com/anishsinha-dev/tic-tac-toe.git
    ```
 
 2. Open the folder in your editor
