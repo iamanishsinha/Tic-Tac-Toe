@@ -42,7 +42,7 @@ tic-tac-toe/
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/anishsinha-dev/tic-tac-toe.git
+   git clone https://github.com/anishsinha-dev/Tic-Tac-Toe.git
    ```
 
 2. Open the folder in your editor
