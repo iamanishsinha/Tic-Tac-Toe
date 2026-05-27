@@ -121,3 +121,5 @@ If you like this project, consider giving it a ⭐ on GitHub!
 ---
 
 ## Copyright Reserved
+
+All rights are reserved, to be used only for educational purposes.
